@@ -1,0 +1,57 @@
+
+.scroll-demo {
+	width: 400px;	
+	margin: 30px auto;
+}
+.scroll-tab {
+	border-bottom: 1px solid #ccc;
+}
+.scroll-tab > li {
+	float: left;
+	width: 25%;	
+	text-align: center;
+	border-top:2px solid;
+	height: 40px;
+	line-height: 40px;
+}
+.scroll-tab .active {
+	color: #00be3c;
+}
+
+
+
+.scroll-wrap {
+	height: 300px;
+	border: 1px solid #ccc;
+	position: relative;
+}
+.scroll-content {
+	height: 100%;
+	overflow: hidden;
+	padding: 0 20px;
+}
+.scroll-content > h3 {
+	text-align: center;
+	margin: 15px auto;
+}
+
+
+.scroll-bar {
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: #ccc;
+	height: 100%;
+	width: 10px;
+	border-radius: 10px;
+}
+.scroll-bar .bar {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;	
+	height: 30px;
+	background: #fff;
+	cursor: pointer;
+	border-radius: 10px;
+}
