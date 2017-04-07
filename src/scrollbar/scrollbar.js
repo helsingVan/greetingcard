@@ -13,7 +13,10 @@ $.extend(ScrollBar.prototype,{
 			barSelector: '',
 			wheelStep: 30,
 			tabItemSelector: '',
-			tabActiveClass: ''
+			tabActiveClass: '',
+			anchor: '',
+			correctSelector: '.correct-bot',
+			articleSelector: '.content'
 		};
 		$.extend(true,self.options,options||{}); 
 		this._initDomEvent();
@@ -23,8 +26,14 @@ $.extend(ScrollBar.prototype,{
 		this.cont = $(opt.contSelector);
 		this.scroll = $(opt.scrollSelector);
 		this.bar = $(opt.barSelector);
+		this.tabItem = $(opt.tabItemSelector);
+		this.tabActive = $(opt.tabActiveClass);
+		this.anchor = $(opt.anchor);
+		this.article = $(opt.articleSelector);
+		this.correct = $(opt.correctSelector);
 		this.doc = $(document);
-		this._initBarEvent()._bindContScroll()._bindMouseWheel();
+		this._initBarEvent()._bindContScroll()._bindMouseWheel()._initTabEvent()
+			._initArticleHeight();
 	},
 	_initBarEvent: function() {
 		var self = this;
@@ -78,7 +87,23 @@ $.extend(ScrollBar.prototype,{
 	},
 	scrollTo: function(position) {
 		var self = this;
+		var posArr = self.getAllAnchorPosition();
+		if(posArr.length === self.tabItem.length) {
+			self.changeTabSelect(getIndex(position));
+		}
+
+
 		self.cont.scrollTop(position);
+
+		function getIndex(position) {
+			for(var i=posArr.length-1; i>=0 ;i--) {
+				if(position >= posArr[i]) {
+					return i;
+				}else {
+					continue;
+				}
+			}
+		}
 	},
 	// 滑块当前位置
 	getBarPosition: function() {
@@ -118,6 +143,38 @@ $.extend(ScrollBar.prototype,{
 			self.correct[0].style.height = contHeight - lastArticleHeight
 									-self.anchor.outerHeight() + 'px';
 		}
+		return self;
+	},
+	// 点击标签
+	_initTabEvent: function() {
+		var self = this;
+		self.tabItem.on('click',function() {
+			var index = $(this).index();
+			self.changeTabSelect(index);
+
+			self.scrollTo(self.cont[0].scrollTop + self.getAnchorPosition(index));
+		});
+		return self;
+	},
+	// 切换标签的选中
+	changeTabSelect: function(index) {
+		var self = this;
+		var active = self.options.tabActiveClass;
+		return self.tabItem.eq(index).addClass(active)
+			.siblings().removeClass(active);
+	},
+	// 获取指定锚点到上边界的像素
+	getAnchorPosition: function(index) {
+		return this.anchor.eq(index).position().top;
+	},
+	// 获取每个锚点位置信息的数组
+	getAllAnchorPosition: function() {
+		var self = this;
+		var allPositionArr = [];
+		for(var i=0;i < self.anchor.length; i++) {
+			allPositionArr.push(self.cont[0].scorllTop + self.getAnchorPosition(i));
+		}
+		return allPositionArr;
 	}
 }); 
 
@@ -127,5 +184,6 @@ var scroll = new ScrollBar({
 	scrollSelector: '.scroll-bar',
 	barSelector: '.bar',
 	tabItemSelector: '.tab-item',
-	tabActiveClass: '.active'
+	tabActiveClass: 'active',
+	anchor: '.anchor'
 });
