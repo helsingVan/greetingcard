@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css小技巧</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.img-box img {
+			float:left;
+		}
+		.link:link {
+			color: #03c;
+		}
+		.link:visited {
+			color: #666;
+		}
+		.link:hover {
+			color: #f30;
+		}
+		.link:active {
+			color: #c30;
+		}
+		div {
+			margin: 40px auto;
+			padding: 4px;
+		}
+		.font-box {
+			/*容器需要固定的长度*/
+			width: 100px;			
+			border: 1px solid #ccc;
+			
+			/* 首先通过white-space让文本强制在一行显示，
+			 * 然后通过overflow:hidden;让溢出的文本隐藏
+			 * 最后通过text-overflow让溢出隐藏的文本显示
+			 * 为省略号
+			*/
+			/*white-space: nowrap;
+			overflow:hidden;
+			text-overflow: ellipsis;
+*/
+			filter: alpha(opacity=20);
+			opacity: .2;
+		}
+		.border {
+			border-top-style: double;
+			border-top-width:14px;
+			border-top-color: #ccc;
+			width: 20px;
+			border-bottom: 4px solid #ccc;
+		}
+		table {
+			border: 1px solid #ddd;
+			border-collapse: collapse;
+			margin-left: 50px;
+		}
+		table th,
+		table td {
+			border: 1px solid #ddd;
+			padding: 2px 5px;
+		}
+		.padding {
+			width: 100px;
+			/*height: 100px;*/
+			background: red;
+			padding-top: 100%;
+		}
+		input {
+			outline: none;
+			margin-left: 40px;
+			margin-bottom: 40px;
+			height: 30px;
+			text-indent: 10px;
+		}
+		input::-webkit-input-placeholder {
+			color: red;
+		}
+		input::-moz-placeholder {
+			color: red;
+		}
+		input:-ms-placeholder {
+			color:red;
+		}
+		a[href^="http"]:empty::before {
+			content: attr(href);
+		}
+	</style>
+</head>
+<body>
+<!-- <div class="img-box" style="width:210px">
+	<img src="../../static/image/dog.jpg" alt="" width=100 height=100>
+	<img src="../../static/image/dog.jpg" alt="" width=100 height=100>
+	<img src="../../static/image/dog.jpg" alt="" width=100 height=100>
+	<img src="../../static/image/dog.jpg" alt="" width=100 height=100>
+</div> -->
+<!-- <a href="##" class="link">连接</a> -->
+<a href="http://www.baidu.com"></a>
+<div class="font-box">
+	<a href="http://www.baidu.com"></a>
+</div>
+<input type="text" placeholder="请输入内容">
+
+<table>
+	<thead>
+		<tr>
+			<th>标题1</th>
+			<th>标题2</th>
+			<th>标题3</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>内容1</td>
+			<td>内容1</td>
+			<td>内容1</td>
+		</tr>
+		<tr>
+			<td>内容1</td>
+			<td>内容1</td>
+			<td>内容1</td>
+		</tr>
+		<tr>
+			<td>内容1</td>
+			<td>内容1</td>
+			<td>内容1</td>
+		</tr>
+	</tbody>
+</table>
+
+</body>
+</html>
