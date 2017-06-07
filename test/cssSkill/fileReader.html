@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Document</title>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<style>
+		*,::before,::after{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		.container {
+			padding: 20px 0;
+			margin: 20px;
+			display: flex;
+			justify-content: space-between;
+			border-top: 1px solid #ddd;
+			border-bottom: 1px solid #ddd;
+		}
+		.container .wrapper {
+			position: relative;
+			flex: 0 1 80px;
+			width: 80px;
+			height: 80px;
+			border: 1px solid #ccc;
+		}
+		.container .image-box {
+			width: 100%;
+			height: 100%;
+		}
+		.container .image-input {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+		}
+		.image-input::before {
+			position: absolute;
+			display: block;
+			content: '';
+			width: 50%;
+			border-top: 1px solid #ddd;
+			top: 50%;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+		.image-input::after {
+			position: absolute;
+			display: block;
+			content: '';
+			height: 50%;
+			border-left: 1px solid #ddd;
+			top: 50%;
+			left: 50%;
+			transform: translateY(-50%);
+		}
+		.container input {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="wrapper">
+			<div class="image-box"></div>
+			
+			<input type="file" name="image" id="image_01" onchange="handle(this)">
+			<label for="image_01" class="image-input"></label>
+			
+		</div>
+		<div class="wrapper">
+			<div class="image-box"></div>
+			
+			<input type="file" name="image" id="image_02" onchange="handle(this)">
+			<label for="image_02" class="image-input"></label>
+		</div>
+		<div class="wrapper">
+			<div class="image-box"></div>
+			
+			<input type="file" name="image" id="image_03" onchange="handle(this)">
+			<label for="image_03" class="image-input"></label>
+		</div>
+	</div>
+	<!-- <script>
+		var box = document.getElementById('box');
+		console.log(window.URL);
+		function handle(obj) {
+			var files = obj.files;
+			console.log(files);
+			var img = new Image();
+			img.src = window.URL.createObjectURL(files[0]);
+			img.onload = function(e) {
+				window.URL.revokeObjectURL(this.src);
+			}
+			// img.style.maxHeight = '100px';
+			img.style.maxWidth = '100px';
+			box.innerHTML = '';
+			box.appendChild(img);
+		}
+	</script> -->
+	<script>
+		function handle(obj) {
+			var obj = obj;
+			var file = obj.files[0];
+			console.log(file);
+			var reader = new FileReader();
+			reader.readAsDataURL(file);
+			reader.onload = function() {
+				'use strict';
+				var imageBox = $(obj).prev()[0];
+				console.log(imageBox);
+				var width = imageBox.clientWidth;
+				var height = imageBox.clientHeight;
+				var image =  `<img src=${this.result} width=${width} height=${height}>`;
+				
+				imageBox.innerHTML = image;
+				$(obj).next().hide();
+			}
+		}
+	</script>
+</body>
+</html>
