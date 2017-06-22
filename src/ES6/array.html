@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>array1</title>
+</head>
+<body>
+<p></p>
+<p></p>
+<p></p>
+
+
+<script>
+'use strict';
+let arrayLike = {
+	'0': 'fan',
+	'1': '28',
+	'2': '男',
+	length: 3
+}
+let arr = Array.from(arrayLike);
+console.log(arr);  // ['fan','28','男']
+
+/* 实际应用中，常见的类似数组的对象是DOM操作返回的NodeList集合，
+  以及函数内部的arguments对象。Array.from都可以将它们转为真正的数组。
+*
+*/
+// 1.nodelist
+let ps = document.querySelectorAll('p');
+let psArr = Array.from(ps);
+console.log(ps);		// [p,p,p]  prototype->NodeList
+console.log(psArr);		// [p,p,p]  prototype->Array
+// 2.arguments
+function func() {
+	console.log(arguments);		
+	console.log(Array.from(arguments));	
+}
+func('a','b','c');		// ['a','b','c',callee:...,length:3]   ['a','b','c']
+
+/* 数组实例的find方法，用于找出第一个符合条件的数组成员。它的参数是一个回调函数，
+所有数组成员依次执行该回调函数，直到找出第一个返回值为true的成员，然后返回该成员。
+如果没有符合条件的成员，则返回undefined。 */
+let arr2 = [2,4,-5,-6,8];
+let newArr2 = null;
+newArr2 = arr2.find((v) => {
+	return v < 0;
+});
+console.log(newArr2);  // -5
+
+[1, 5, 10, 15].find(function(value, index, arr) {
+  return value > 9;
+}) // 10
+
+// [1, 5, 10, 15].findIndex(function(value, index, arr) {
+//   return value > 9;
+// }) // 2
+
+/**/
+let arr3 = [1,2,3];
+for(let i of arr3.keys()) {
+	console.log(i);    // 0,1,2
+}
+// for(let v of arr3.values()) {
+// 	console.log(v);
+// }
+for(let [i,v] of arr3.entries()) {
+	console.log(i,v);    // 0 1  1 2  2 3
+}
+
+// includes()
+let arr4 = [1,23,4,5,6];
+console.log(arr4.includes(5));
+</script>
+</body>
+</html>
