@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>解构用途</title>
+</head>
+<body>
+<script>
+// 1.交换变量的值
+let x = 1;
+let y = 2;
+([x,y] = [y,x]);
+console.log(x);  // 2
+console.log(y);  // 1
+
+// 2.取函数返回值
+function func() {
+	return [1,2,3];
+}
+let [a1,a2,a3] = func();	// [1,2,3];
+function funcObj() {
+	return {
+		name: 'fan',
+		age: 18
+	};
+}
+let {name,age} = funcObj()   // name:fan age:18
+
+// 3.函数参数的定义
+function add([x,y,z]) {
+	return x + y + z;
+}
+add([1,2,3]);   // 函数参数有秩序
+function add2({x,y,z}) {
+	return x + y + z;
+}
+add2({y: 2,x: 1,z: 3});  // 函数参数无秩序
+
+// 4.提取json数据
+let jsonData = {
+	name: 'fan',
+	age: 28,
+	subject: [123,324]
+};
+let {subject:number} = jsonData;
+console.log(number);  // [123,324];
+
+// 5.函数参数默认值
+jQuery.ajax = function (url, {
+  async = true,
+  beforeSend = function () {},
+  cache = true,
+  complete = function () {},
+  crossDomain = false,
+  global = true,
+  // ... more config
+}) {
+  // ... do stuff
+};
+
+// 6.遍历map结构
+var map = new Map();
+map.set('first', 'hello');
+map.set('second', 'world');
+
+for (let [key, value] of map) {
+  console.log(key + " is " + value);
+}
+// first is hello
+// second is world
+// 获取键名
+for (let [key] of map) {
+  // ...
+}
+
+// 获取键值
+for (let [,value] of map) {
+  // ...
+}
+
+// 7.提取模块的指定方法
+const { SourceMapConsumer, SourceNode } = require("source-map");
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>destruct</title>
+</head>
+<body>
+<script>
+// 解构 从数组或对象中提取值，对变量进行赋值
+let a = 1;
+let b = 2;
+let c = 3;
+// 等同于
+// let [a,b,c] = [1,2,3];
+
+let [a1,[[a2],a3]] = [1,[[2],3]];
+console.log(a1);    // 1
+console.log(a2);	// 2
+console.log(a3);	// 3
+
+let [,,b3] = [1,2,3];
+console.log(b3);    // 3
+
+let [c1,,c3] = [1,2,3];   // 不完全解构 成功
+console.log(c1);	// 1
+console.log(c3);	// 3
+
+let [d1,...d2] = [1,2,3,4];
+console.log(d1);	// 1
+console.log(d2);	// [2,3,4]
+
+let [e1,e2,...e3] = [1];
+console.log(e1);	// 1
+console.log(e2);	// undefined  解构不成功，会赋值undefined
+console.log(e3);	// []
+
+// 解构默认值
+let [x,y='b'] = ['a'];
+console.log(x);		// a
+console.log(y);		// b
+</script>
+</body>
+</html>

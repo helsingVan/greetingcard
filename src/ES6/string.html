@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>字符串扩展1</title>
+</head>
+<body>
+<script>
+'use strict';
+// 1. 字符串遍历 提供接口 可以被for..of遍历
+let str = 'string';
+for(let a of str) {
+  console.log(a);   // s  t  r   i  n  g
+}
+
+// 2. at() 可以识别unicode编号大于0xFFFF的字符，返回正确的字符串
+// let str2 = 'abc';
+// let x1 = str2.at(0);
+// let x2 = '我是一个字符串'.at(1);
+// console.log(x1);	// a
+// console.log(x2);	// 是
+
+let str3 = 'hello world!';
+console.log(str3.startsWith('hello'));	// true
+console.log(str3.endsWith('!'));		// true
+console.log(str3.includes('o'));		// true
+console.log(str3.startsWith('world',5));  //false
+console.log(str3.endsWith('hello',5));	  // true  针对n前的字符
+console.log(str3.includes('w',7));		  // false
+
+let str4 = 'str';
+console.log(str4.repeat(2));	// strstr
+</script>
+</body>
+</html>

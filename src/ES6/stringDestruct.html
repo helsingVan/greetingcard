@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>stringDestruct</title>
+</head>
+<body>
+<script>
+// 字符串也可以解构赋值。这是因为此时，字符串被转换成了一个类似数组的对象。
+let [a1,a2,a3] = 'str';
+console.log(a1);	// s
+console.log(a2);	// t
+console.log(a3);	// r
+// 类似数组的对象都有一个length属性，因此还可以对这个属性解构赋值。
+let {length: len} = 'str';
+console.log(len);	// 3
+</script>
+</body>
+</html>

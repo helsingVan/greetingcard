@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>funcDestruct</title>
+</head>
+<body>
+<script>
+/* 
+ 函数add的参数表面上是一个数组，但在传入参数的那一刻，数组参数就被解构成变量x和y。
+ 对于函数内部的代码来说，它们能感受到的参数就是x和y。
+*/
+function add([x,y]) {
+	return x + y;
+}
+add([1,2]);  // 3
+
+function move({x=3,y=2} = {}) {
+	console.log(x+y);
+}
+move({x:5,y:6});	// 11
+move({x:5});		// 7
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>let</title>
+</head>
+<body>
+<script>
+'use strict';
+// ES6 新增了let命令，用来声明变量。它的用法类似于var，但是所声明的变量，只在let命令所在的代码块内有效。
+if(true) {
+	var a = 'a';
+	let b = 'b';
+}
+console.log(a);  // a
+// console.log(b);  // b is not defined
+
+var aa = [];
+for(var i=0;i<10;i++) {
+	aa[i] = function() {
+		console.log(i);    // var声明的i为全局的
+	};
+}
+aa[5]();		// 10
+aa[8]();		// 10
+
+var aa = [];
+for(let j=0;j<10;j++) {
+	aa[j] = function() {
+		console.log(j);    // let声明的j仅在块级作用域内有效
+	}
+}
+aa[5]();		// 5
+aa[8]();		// 8
+
+// for循环还有一个特别之处，就是设置循环变量的那部分是一个父作用域，而循环体内部是一个单独的子作用域。
+for(let j=0;j<2;j++) {
+	let j = 'inner';
+	console.log(j);
+}
+// inner
+// iner
+
+// 暂时性死区 只要块级作用域内存在let命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响。
+var tmp = 123;
+if(true) {
+	// tmp = 345;  // tmp is not defined
+	let tmp;    // 存在全局变量tmp，但是块级作用域内let又声明了一个局部变量tmp，导致后者绑定这个块级作用域，所以在let声明变量前，对tmp赋值会报错。
+}
+
+// 不允许重复声明  let不允许在相同作用域内，重复声明同一个变量。
+if(true) {
+	// let a = 123;
+	var a = 345;  // Identifier 'a' has already been declared
+}
+if(true) {
+	// let a = 123;
+	let a = 345;  // Identifier 'a' has already been declared
+}
+function arg(str) {
+	let str = str;
+}
+// arg('str');       // 报错
+function arg2(str) {
+	if(true) {
+		let str = '123';
+		console.log(str);
+	}
+}
+arg2('str');   // 123
+</script>
+</body>
+</html>
