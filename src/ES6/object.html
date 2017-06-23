@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>object</title>
+</head>
+<body>
+<script>
+// 1.简洁表示法
+let foo = 'bar';
+let obj = { foo };  // obj { foo: 'bar'}
+// 等同于 let obj = { foo: foo};
+
+Object.is('foo','foo');   // true;
+Object.is({},{});		  // false;
+
++0 === -0   //true
+NaN === NaN // false
+
+Object.is(+0,-0);  // false
+Object.is(NaN,NaN); // true
+
+let target = {a: 1};
+let obj1 = {b: 2};
+let obj2 = {c: 3};
+
+Object.assign(target,obj1,obj2);
+console.log(target);  // {a: 1,b: 2,c: 3}
+</script>
+</body>
+</html>
