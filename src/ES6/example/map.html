@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>map</title>
+</head>
+<body>
+<p></p>
+<script>
+let m1 = new Map();
+let domKey = document.getElementsByTagName('p');
+m1.set(domKey,'ps');
+console.log(m1.get(domKey));	// ps
+
+let a = [
+	['name','fanguang'],
+	['age',28],
+	['sex','man']
+];
+let b = {
+	name: 'fei',
+	age: 20,
+	sex: 'women'
+}
+let m2 = new Map(a);
+console.log(m2);	// map {'name'=>'fanguang','age'=>28,'sex'=>'man'}
+// let m3 = new Map(b);
+// console.log(m3);
+</script>
+</body>
+</html>

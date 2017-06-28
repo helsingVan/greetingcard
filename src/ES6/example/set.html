@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script>
+'use strict';
+let a = [1,1,2,2,3,3];
+let s = new Set();
+a.forEach((v)=> {
+	s.add(v);
+});
+console.log(s);    // set(3) {1,2,3}
+console.log(s[0]); // undefined
+for(let i of s) {
+	console.log(i);  // 1 2 3
+}
+console.log('----------');
+
+let s2 = new Set([1,2,2,3,3,4,5,6,6]);
+console.log([...s2]);   // [1,2,3,4,5,6]
+let s2Arr = Array.from(s2);
+console.log(s2Arr);     // [1,2,3,4,5,6]  类数组转化为真数组
+console.log('----------');
+
+// 数组去重es6
+function dedupe(array) {
+	return Array.from(new Set(array));
+}
+console.log(dedupe([1,1,2,2,3,3]));		// [1,2,3]
+console.log('----------');
+
+// 遍历 keys values entries forEach
+let s3 = [1,'red','green'];
+for(let i of s3.keys()){
+	console.log(i);		// 0 1 2  键
+}
+for(let i of s3.entries()) {
+	console.log(i);	    // [0,1]   [1,'red']  [2,'green']
+}
+for(let i of s3) {
+	console.log(i);		// 1  'red'  'green'
+}
+console.log('-------');
+
+// 并集  交集  差集
+let s4 = new Set([1,2,3]);
+let s5 = new Set([2,3,4]);
+let bingji = new Set([...s4,...s5]);
+console.log(bingji);	// set[1,2,3,4]
+let jiaoji = new Set([...s4].filter((v)=>{ return s5.has(v) }));
+console.log(jiaoji);  	// set[2,3]
+let chaji = new Set([...s4].filter((v)=> { return !s5.has(v) }));
+console.log(chaji);		// set[1]
+</script>
+</body>
+</html>

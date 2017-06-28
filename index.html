@@ -4,22 +4,55 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>我的主页index1</title>
+	<script src="./lib/jquery/dist/jquery.min.js"></script>
 	<style>
+	    html {
+	    	height: 100%;
+	    	/*min-width: 320px;*/
+	    	font-size: 62.5%;
+	    }
 		body {
+			height: 100%;
 			display: flex;
 			flex-flow: column nowrap;
+		}
+		select {
+		 	appearance: none;
+		 	-webkit-appearance: none;
+		}
+		main {
+		  border-left: 1px solid red;
+		  border-right: 1px solid red;
+		  min-height: 100%;
+		}
+		a {
+			font-size: 1rem;
 		}
 	</style>
 </head>
 <body>
-<header>
+<!-- <header>
 	<h1>我的主页</h1>
-</header>
+</header> -->
 <main>
-	<div>
+	
 		<a href="./test/cssSkill/flex.html">Flex布局</a>
+		<a href="##"></a>
 		<a href="./test/cssSkill/fileReader.html">fileReader</a>
-	</div>
+		
+		
 </main>
+
+<script>
+$('#btn').on('click',function() {
+	var test = $('#test').val().trim();
+	console.log(test);
+	if(test) {
+		console.log('true');
+	}else {
+		console.log('false');
+	}
+})
+</script>
 </body>
 </html>
