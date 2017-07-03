@@ -105,7 +105,7 @@ class Base {
 	*/
 	assistHandle(e) {
 		e.preventDefault();
-		left self = this;
+		let self = this;
 		let $cur = $(e.currentTarget);
 		let index = $cur.index();
 		$('.boll-list .btn-boll').removeClass('btn-boll-active');
@@ -181,4 +181,85 @@ class Base {
 		$(self.cartEl).append(tpl);
 		self.getTotal();
 	}
+
+	/*
+		计算金额
+	*/
+	getCount() {
+		let self = this;
+		let active = $('.boll-list .btn-boll-active').length;
+		let count = self.computeCount(active,self.curPlay);
+		let range = self.computeBonus(active,self.curPlay);
+		let money = count*2;
+		let win1 = range[0] - money;
+		let win2 = range[1] - money;
+		let tpl;
+		let c1 = (win1<0&&win2<0)?Math.abs(win1):win1;
+		let c2 = (win1<0&&win2<0)?Math.abs(win2):win2;
+		if(count === 0) {
+			tpl = `您选了<b class="red">${count}</red>注，共<b class="red">${count*2}</b>元`;
+		}else if(range[0] === range[1]) {
+			tpl = `
+				您选了<b>${count}</b>注，共<b>${count*2}</b>元 <em>若中奖，奖金：
+				<strong> class="red">${range[0]}</strong>元，
+				您将${win1>=0?'盈利':'亏损'}
+				<strong class="${win1>=0?'red':'green'}">${Math.abs(win1)}</strong>元</em>
+			`;
+		}else {
+			tpl = `
+				您选了<b>${count}</b>注，共<b>${count*2}</b>元 <em>若中奖，奖金：
+				<strong class="red">${range[0]}</strong> 至 <strong class="red">${range[1]}</strong> 元
+				您将${(win1<0&&win2<0)?'亏损':'盈利'}
+				<strong class="${win1>=0?'red':'green'}">${c1}</strong>
+				至 <strong class="${win2>=0?'red':'green'}">${c1}</strong>元</em>
+			`;
+		}
+		$('.sel_info').html(tpl);
+	}
+
+	/*
+		计算所有金额
+	*/
+	getTotal() {
+		let count =0;
+		$('.codeList li').each(function(index,item) {
+			count += $(item).attr(count)*1;
+		});
+		$('#count').text(count);
+		$('#money').text(count*2);
+	}
+
+	/*
+		生成随机数
+	*/
+	getRandom(num) {
+		let arr = [],index;
+		let number = Array.from(this.number);
+		while(num--) {
+			index = Number.parseInt(Math.random()*number.length);
+			arr.push(number[index]);
+			number.splice(index,1);
+		}
+		return arr.join('');
+	}
+
+	/*
+		添加随机号码
+	*/
+	getRandomCode(e) {
+		e.preventDefault();
+		let num = e.currentTarget.getAttribute('count');
+		let play = this.curPlay.match(/\d+/g)[0];
+		let self = this;
+		if(num === '0') {
+			$(self.cartEl).html('');
+		}else {
+			for(let i=0;i<num;i++) {
+				self.addCodeItem(self.getRandom(play),self.curPlay,self.playList.get(self.curPlay).name,1);
+			}
+		}
+	}
+
 }
+
+export default Base;
