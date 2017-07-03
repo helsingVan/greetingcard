@@ -29,6 +29,7 @@
     "gulp-sequence": "^0.4.6",
     "gulp-uglify": "^2.1.0",
     "gulp-util": "^3.0.8",
+    "jquery": "^3.2.1",
     "morgan": "^1.8.2",
     "require-dir": "^0.3.1",
     "serve-favicon": "^2.4.3",

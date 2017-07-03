@@ -8737,7 +8737,58 @@
 /* 303 */
 /***/ (function(module, exports) {
 
-	"use strict";
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var Timer = function () {
+		function Timer() {
+			_classCallCheck(this, Timer);
+		}
+
+		_createClass(Timer, [{
+			key: 'countDown',
+			value: function countDown(end, update, handle) {
+				var now = new Date().getTime();
+				var self = this;
+				if (now > end) {
+					handle.call(self);
+				} else {
+					var lastTime = end - now;
+					var px_d = 24 * 60 * 60 * 1000;
+					var px_h = 60 * 60 * 1000;
+					var px_m = 60 * 1000;
+					var px_s = 1000;
+					var day = Math.floor(lastTime / px_d);
+					var hour = Math.floor((lastTime - day * px_d) / px_h);
+					var miunte = Math.floor((lastTime - day * px_d - hour * px_h) / px_m);
+					var second = Math.floor((lastTime - day * px_d - hour * px_h - miunte * px_m) / px_s);
+					var content = [];
+					if (day > 0) {
+						content.push('<span>' + day + '</span>\u5929');
+					}
+					if (content.length || hour > 0) {
+						content.push('<span>' + hour + '</span>\u65F6');
+					}
+					if (content.length || miunte > 0) {
+						content.push('<span>' + miunte + '</span>\u5206');
+					}
+					if (content.length || second > 0) {
+						content.push('<span>' + second + '</span>\u79D2');
+					}
+					self.lastTime = content.join('');
+					update.call(self, content.join(''));
+					setTimeout(function () {
+						self.countDown(end, update, handle);
+					}, 1000);
+				}
+			}
+		}]);
+
+		return Timer;
+	}();
 
 /***/ })
 /******/ ]);

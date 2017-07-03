@@ -50,6 +50,11 @@ router.get('/', function (req, res, next) {
 		title: 'Express'
 	});
 });
+router.get('/test',function(req,res,next) {
+	res.render('test', {
+		title: 'Express'
+	})
+})
 
 // get omit
 router.get('/get/omit', function (req, res, next) {
