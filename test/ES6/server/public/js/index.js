@@ -8858,7 +8858,7 @@
 					self.endTime = res.end_time;
 					self.state = res.state;
 					(0, _jquery2.default)(self.issue_el).text(res.issue);
-					self.countdown(res.end_time, function (time) {
+					self.countDown(res.end_time, function (time) {
 						(0, _jquery2.default)(self.countdownEl).html(time);
 					}, function () {
 						setTimeout(function () {
