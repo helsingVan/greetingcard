@@ -8854,10 +8854,11 @@
 			value: function updateState() {
 				var self = this;
 				this.getState().then(function (res) {
+					console.log(res);
 					self.issue = res.issue;
 					self.endTime = res.end_time;
 					self.state = res.state;
-					(0, _jquery2.default)(self.issue_el).text(res.issue);
+					(0, _jquery2.default)(self.issueEl).text(res.issue);
 					self.countDown(res.end_time, function (time) {
 						(0, _jquery2.default)(self.countdownEl).html(time);
 					}, function () {

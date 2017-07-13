@@ -51,10 +51,11 @@ class Lottery extends mix(Base,Calculate,Interface,Timer) {
 	updateState() {
 		let self = this;
 		this.getState().then(function(res) {
+			console.log(res);
 			self.issue = res.issue;
 			self.endTime = res.end_time;
 			self.state = res.state;
-			$(self.issue_el).text(res.issue);
+			$(self.issueEl).text(res.issue);
 			self.countDown(res.end_time,function(time) {
 				$(self.countdownEl).html(time);
 			},function() {
