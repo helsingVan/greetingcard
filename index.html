@@ -18,10 +18,32 @@
 		<a href="./test/cssSkill/flex.html">Flex布局</a>
 		<a href="##"></a>
 		<a href="./test/cssSkill/fileReader.html">fileReader</a>
-		
+		<iframe src="./test/cssSkill/fileReader.html" frameborder="0" id="fileReader"></iframe>
+		<!-- <frameset>
+			<frame src="./test/cssSkill/fileReader.html"></frame>
+		</frameset> -->
+		<div id="target" class="class1 class2" data-title="title">被添加的节点</div>
+		<div id="list">
+			<div name="color"></div>
+			<div name="color"></div>
+			<div name="color"></div>
+		</div>
+		<ul id="container">
+			
+		</ul>
 </main>
 
 <script>
+var list = document.getElementById('list');
+
+var target = document.getElementById('target');
+
+var replace = document.getElementById('replace');
+
+var script = document.createElement('script');
+
+script.src = 'index.js';
+document.head.appendChild(script);
 
 </script>
 </body>
