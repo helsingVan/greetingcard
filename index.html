@@ -46,10 +46,10 @@
 
 <script>
 var target = document.querySelector('#target');
-target.onclick=function(e) {
-	e.preventDefault();
-	console.log(e);
-}
+document.body.addEventListener('touchmove',function(e) {
+	// console.log(e);
+	console.log(e.changedTouches);
+})
 </script>
 </body>
 </html>
