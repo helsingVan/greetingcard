@@ -6,11 +6,14 @@
 	<link rel="stylesheet" href="">
 	<!-- <link href="https://vjs.zencdn.net/5.19/video-js.min.css" rel="stylesheet">
 <script src="https://vjs.zencdn.net/5.19/video.min.js"></script> -->
-	<title>我的主页index1</title>
+	<title>我的主页index</title>
 	<script src="./lib/jquery/dist/jquery.min.js"></script>
 	<style>
 	    #target {
 	    	font-size: 20px;
+	    }
+	    iframe {
+	    	height: 300px;
 	    }
 	</style>
 </head>
@@ -23,33 +26,26 @@
 		<a href="./test/cssSkill/flex.html">Flex布局</a>
 		<a href="##"></a>
 		<a href="./test/cssSkill/fileReader.html" id="target">fileReader</a>
-	<!-- 	<video
-    id="my-player"
-    class="video-js"
-    controls
-    preload="auto"
-    poster="//vjs.zencdn.net/v/oceans.png"
-    data-setup='{}'>
-  <source src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source>
-  <source src="https://vjs.zencdn.net/v/oceans.webm" type="video/webm"></source>
-  <source src="https://vjs.zencdn.net/v/oceans.ogv" type="video/ogg"></source>
-  <p class="vjs-no-js">
-    To view this video please enable JavaScript, and consider upgrading to a
-    web browser that
-    <a href="http://videojs.com/html5-video-support/" target="_blank">
-      supports HTML5 video
-    </a>
-  </p>
-</video> -->
-		
+		<div id="editor" contenteditable></div>
+        <iframe src="" frameborder="0" id="ifra"></iframe>
+        <button id="btn">粗体</button>
+
+        <div id="container"></div>
 </main>
 
 <script>
-var target = document.querySelector('#target');
-document.body.addEventListener('touchmove',function(e) {
-	// console.log(e);
-	console.log(e.changedTouches);
+var iframe = document.querySelector('#ifra');
+var btn = document.querySelector('#btn');
+var editor = document.querySelector('#editor');
+iframe.contentDocument.designMode = 'on';
+btn.addEventListener('click',function(e) {
+	// alert(1);
+	iframe.contentDocument.execCommand('forecolor',false,'#f92660');
+	e.preventDefault();
 })
+
+var tpl = '<p style="color:red;">sdfsd</p>';
+$('#container').append(tpl);
 </script>
 </body>
 </html>
