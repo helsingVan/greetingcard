@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Document</title>
+	<style>
+		.box {
+  position: relative;
+  width: 300px;
+  height: 80px;
+  line-height: 80px;
+  background: #fff;
+  text-align: center;
+  font-size: 28px;
+}
+.fore {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+	</style>
+</head>
+<body>
+
+		<!-- <div class="box"> -->
+      HelloWorld
+     <canvas id="cv" width="300" height="80" class="fore"></canvas>
+    <!-- </div> -->
+
+
+
+<script>
+	var cv = document.getElementById('cv'),
+		ctx = cv.getContext('2d'),
+    r = 2; // 点击显示半径为 2 的范围
+    
+ctx.fillStyle = '#999';
+ctx.rect(0, 0, 300, 80);
+ctx.fill();
+var x1='';
+var y1='';
+cv.addEventListener('touchstart',function(e){
+	console.log(e.target);
+
+	x1 = e.clientX;
+    y1 = e.clientY;
+  
+  ctx.lineCap = "round";　　
+  ctx.lineJoin = "round";　　
+  ctx.lineWidth = r * 2;　　
+  ctx.globalCompositeOperation = "destination-out";
+  
+  ctx.save();
+  ctx.beginPath()
+  ctx.arc(x1,y1,1,0,2*Math.PI);
+  ctx.fill();
+  ctx.restore();
+})
+cv.addEventListener('touchmove',function(e) {
+	 var x2 = e.clientX;
+     var y2 = e.clientY;
+
+     ctx.save();
+     ctx.moveTo(x1,y1);
+     ctx.lineTo(x2,y2);
+     ctx.stroke();
+     ctx.restore();
+
+     x1 = x2;
+     y1 = y2;
+})
+
+
+</script>
+</body>
+</html>
