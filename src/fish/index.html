@@ -3,8 +3,47 @@
 <head>
 	<meta charset="UTF-8">
 	<title>吃鱼小游戏</title>
+	<script src="js/commonFunctions.js"></script>
+	<style>
+		body {
+			padding-top: 10px;
+		}
+		.all-bg {
+			width: 800px;
+			height: 600px;
+			margin: 0 auto;
+		}
+		#allcanvas {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			margin: 0;
+		}
+		#c1 {
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			z-index: 1;
+		}
+		#c2 {
+			left: 0;
+			bottom: 0;
+			z-index: 0;
+			width: 800px;
+			height: 600px;
+			/*background: url('./image/background.jpg') no-repeat center;*/
+		}
+	</style>
 </head>
 <body>
+	<div class="all-bg">
+		<div id="allcanvas">
+			<canvas id="c1"></canvas>
+			<canvas id="c2"></canvas>
+		</div>
+	</div>
 	
+	<script src="js/class.js"></script>
+	<script src="js/main.js" defer></script>
 </body>
 </html>
