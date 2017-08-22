@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="../css/canvas.css">
+	<title>Document</title>
+	
+</head>
+<body>
+	<div class="container">
+		<canvas id="context"></canvas>
+	</div>
+	<img src="../image/fruit.png" alt="" id="image">
+	<script src="../js/common.js"></script>
+	<script>
+	  var c=document.getElementById("context");
+	  var ctx=c.getContext("2d");
+	  var img = document.getElementById('image')
+	  
+	  // var pat = ctx.createPattern(img,'repeat-y');
+	  // ctx.fillStyle = pat;
+	  // ctx.fillRect(0,0,200,200);
+
+	  // var grd = ctx.createRadialGradient(50,50,5,100,100,100);
+	  // grd.addColorStop(0,'red');
+	  // grd.addColorStop(1,'#fff');
+	  // ctx.fillStyle = grd;
+	  // ctx.fillRect(50,50,200,200);
+	  // ctx.font = '40px microsoft yahei';
+	  // ctx.strokeText('hello world',50,50)
+
+	  var image = new Image();
+	  image.src = '../image/fruit.png';
+	  console.log(image);
+	  ctx.drawImage(image,100,100,20,20);
+	</script>
+</body>
+</html>
