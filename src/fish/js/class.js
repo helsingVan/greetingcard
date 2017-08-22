@@ -4,6 +4,7 @@ function Haikui() {
   this.y = [];
   this.num = 50;
 }
+
 Haikui.prototype.init = function() {
   for(var i=0;i<this.num;i++) {
   	this.x[i] = i * 16 + Math.random() * 20;
@@ -47,22 +48,20 @@ FruitClass.prototype.init = function() {
 };
 FruitClass.prototype.draw = function() {
   var self = this;
+  ctx2.save();
   for(var i=0;i<self.num;i++) {
     if(self.l[i] < 14) {
       self.l[i] += 0.01*deltaTime;
       
     }else {
-      // this.y[i] -= 0.1 * deltaTime;
+      this.y[i] -= 0.1 * deltaTime;
     }
     ctx2.drawImage(self.orange,
         self.x[i] - self.l[i]*0.5,
         self.y[i] - self.l[i],
         self.l[i],
         self.l[i]);
-    ctx2.clearRect(self.x[i]-self.l[i]*0.5,
-      self.y[i],
-      self.l[i],
-      self.l[i]);
+    ctx2.restore();
   }
 };
 FruitClass.prototype.born = function(i) {

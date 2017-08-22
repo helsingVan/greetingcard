@@ -24,13 +24,13 @@ var game = {
 // 帧绘制
 function gameLoop() {
   
+  requestAnimFrame(gameLoop);
   var now = Date.now();
   deltaTime = now - lastTime;
   lastTime = now;
   
-  fruit.draw();
+  // fruit.draw();
 
-  requestAnimFrame(gameLoop);
 
 
 }

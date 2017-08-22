@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	  * {
+	  	margin: 0;
+	  	padding: 0;
+	  }
+	  html,body {
+	  	width: 100%;
+	  	height: 100%;
+	  }
+	  .container {
+	  	position: absolute;
+	  	top: 50px;
+	  	left: 50px;
+	  	right: 50px;
+	  	bottom: 50px;
+	  	border: 1px solid #ddd;
+	  }
+	</style>
+</head>
+<body>
+  <div class="container">
+  	<canvas id="canvas"></canvas>
+  </div>
+  <script>
+  	function resize() {
+  	  var div = document.querySelector('.container');
+  	  var canvas = document.getElementById('canvas');
+  	  var width = div.clientWidth;
+  	  var height = div.clientHeight;
+  	  canvas.width = width;
+  	  canvas.height = height;
+  	}
+  	resize();
+  	window.onresize = function() {
+  	  resize();
+  	}
+  </script>
+  <script src="./js/clock.js"></script>
+</body>
+</html>
