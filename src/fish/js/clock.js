@@ -8,7 +8,13 @@ var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 var ctxWidth = canvas.clientWidth;
 var ctxHeight = canvas.clientHeight;
-var r = ctxWidth/2-10;
+var r;
+if(ctxWidth<ctxHeight) {
+	r = ctxWidth/2-10;
+}else {
+	r = ctxHeight/2 - 10;
+}
+
 
 var drawCircle = function() {
 	
