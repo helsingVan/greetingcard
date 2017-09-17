@@ -3,55 +3,68 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<link rel="stylesheet" href="">
-	<!-- <link href="https://vjs.zencdn.net/5.19/video-js.min.css" rel="stylesheet">
-<script src="https://vjs.zencdn.net/5.19/video.min.js"></script> -->
-	<title>我的主页index</title>
-	<script src="./lib/jquery/dist/jquery.min.js"></script>
+	<meta name="keywords" content="前端,前端简历,前端博客,前端工程师,html,html5,javascript,范广">
+	<meta name="description" content="前端,前端简历,前端博客,前端工程师,html,html5,javascript,范广的博客">
+	<meta name="author" content="范广,helsingvan">
+	<link rel="stylesheet" href="./lib/html5-reset/assets/css/reset.css">
+	
+	<title>范广的主页</title>
+
 	<style>
-	    #target {
-	    	font-size: 20px;
+	    html,body {
+			height: 100%;
+			overflow: auto;
+			font-family: "microsoft yahei";
 	    }
-	    iframe {
-	    	height: 300px;
-	    }
+		.banner {
+			height: 100%;
+			display: flex;
+			flex-flow: column nowrap;
+			justify-content: center;
+			align-items: center;
+			background: url("./static/image/bg-index.png") center center;
+		}
+		.banner h1,
+		.banner h2 {
+			color: #fff;
+			font-size: 28px;
+			margin: 5px;
+		}
+		.banner h2 {
+			font-size: 24px;
+		}
+		.avatar {
+			border-radius: 50%;
+			overflow: hidden;
+			margin-bottom: 30px;
+		}
+		.link {
+			margin-top: 20px;
+		}
+		.link a {
+			text-decoration: none;
+			padding: 10px 20px;
+			margin: 0 5px;
+			background: #fff;
+			border-radius: 2px;
+		}
 	</style>
 </head>
 <body>
-<header>
-	<h1>我的主页</h1>
-</header>
-<main>
-	
-		<a href="./test/cssSkill/flex.html">Flex布局</a>
-		<a href="##"></a>
-		<a href="./test/cssSkill/fileReader.html" id="target">fileReader</a>
-		<p id="btn">按钮</p>
-</main>
+	<div class="banner">
+		<div class="avatar">
+			<img src="./static/image/user.jpg" alt="" width="150" height="150">
+		</div>
+		<h1>HelsingVan</h1>
+		<h2>抓狂中的前端攻城狮</h2>
+		<div class="link">
+			<a href="https://my.oschina.net/huskydog/blog">BLOG</a>
+			<a href="https://github.com/helsingVan">GITHUB</a>
+		</div>
+	</div>
 
 <script>
-var handle = {
-  info: '点击完成',
-  handleFuc: function(e) {
-  	alert(this.info);
-  	alert(e);
-  }
-}
-var handleFunc = function(e) {
-  console.log(e);
-}
-var info = 'windowInfo';
-var btn = document.querySelector('#btn');
-btn.addEventListener('click',handleFunc);
 
-var person = {
-	name: 'fan'
-}
-Object.preventExtensions(person);
-person.age = '28';
-
-
-// console.log(person);
 </script>
 </body>
 </html>
