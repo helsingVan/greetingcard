@@ -3,7 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/iScroll/5.2.0/iscroll.js"></script>
+	<!-- <base target="_blank" href="http://www.fanguangcn.xin"> -->
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/iScroll/5.2.0/iscroll.js"></script> -->
 	<title>Document</title>
 	<style>
 		html,body {
@@ -13,9 +14,44 @@
 		#wrapper {
 			height: 100%;
 		}
+		#yuan {
+			width:200px;
+			height: 200px;
+			border:1px solid #ddd;
+			border-radius:10px 20px 30px 40px/40px 30px 20px 10px;
+			clear: both;
+		}
+		#yuan > div {
+			width: 50px;
+			height: 50px;
+			border: 1px solid red;
+		}
+		.left {
+			float: left;
+			clear: left;
+			text-decoration: blink;
+			text-transform: uppercase;
+		}
+		.right {
+			float: right;
+		}
+		#box {
+			width: 100px;
+			height:100px;
+			border: 1px solid #ccc;
+			visibility: collapse;
+		}
 	</style>
 </head>
 <body>
+	<div id="box"></div>
+	<div id="yuan">
+		<div class="right"></div>
+		<div class="left">发发送到发生werwer</div>
+		<div class="left"></div>
+		
+	</div>
+
 	<div id="wrapper">
 		<ul>
 			<li>23423423</li>
@@ -67,7 +103,7 @@
 	</div>
 
 	<script>
-		var slider = new IScroll('#wrapper');
+
 	</script>
 </body>
 </html>

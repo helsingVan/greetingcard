@@ -6,10 +6,14 @@
 	<meta name="keywords" content="前端,前端简历,前端博客,前端工程师,html,html5,javascript,范广">
 	<meta name="description" content="前端,前端简历,前端博客,前端工程师,html,html5,javascript,范广的博客">
 	<meta name="author" content="范广,helsingvan">
+	<link rel="shortcut icon" href="favicon.ico">
 	<link rel="stylesheet" href="./lib/html5-reset/assets/css/reset.css">
-	
+	<link rel="stylesheet" href="./lib/fullpage/jquery.fullpage.min.css">
+	<link rel="stylesheet" href="./static/main.css">
+	<script src="./lib/jquery/dist/jquery.min.js"></script>
+	<script src="./lib/fullpage/jquery.fullpage.min.js"></script>
 	<title>范广的主页</title>
-
+	
 	<style>
 	    html,body {
 			height: 100%;
@@ -51,7 +55,7 @@
 	</style>
 </head>
 <body>
-	<div class="banner">
+	<!-- <div class="banner">
 		<div class="avatar">
 			<img src="./static/image/user.jpg" alt="" width="150" height="150">
 		</div>
@@ -61,10 +65,72 @@
 			<a href="https://my.oschina.net/huskydog/blog">BLOG</a>
 			<a href="https://github.com/helsingVan">GITHUB</a>
 		</div>
+	</div> -->
+	<div id="fullPage">
+		<section class="section page_1">
+			<img src="./static/image/bg_01.jpg" alt="" class="main-bg active">
+			<img src="./static/image/bg_02.jpg" alt="" class="main-bg">
+			<img src="./static/image/bg_03.jpg" alt="" class="main-bg">
+			<img src="./static/image/bg_04.jpg" alt="" class="main-bg">
+			
+			<button>3424</button>
+		</section>
+		<section class="section">2</section>
+		<section class="section">3</section>
+		<section class="section">4</section>
 	</div>
-
 <script>
+	$(document).ready(function() {
+		$('#fullPage').fullpage();
+		// $('#mainBg').bannerLoop({
+		// 	banner: ['./static/image/bg_01.jpg','./static/image/bg_02.jpg','./static/image/bg_03.jpg','./static/image/bg_04.jpg','./static/image/bg_05.jpg','./static/image/bg_06.jpg','./static/image/bg_07.jpg','./static/image/bg_08.jpg','./static/image/bg_09.jpg']
+		// });
+		$('.main-bg').bannerLoop();
+	})
 
+	$.prototype.bannerLoop = function() {
+		var self = this;
+		var bannerLength = this.length;
+		
+		var loopNum = 0;
+		var loopTime = 3000;
+		var setImgSourceTime = 9200;
+		
+
+		(function setImgSource(){
+			var num;
+			var imgSource = [],imgUrl,index;
+			for(var i=1;i<21;i++) {
+				if(i < 10) {
+					index = '0' + i;
+				}else {
+					index = i;
+				}
+				imgUrl = './static/image/bg_' + index + '.jpg';
+				imgSource.push(imgUrl);
+			}
+
+			for(var j=0;j<bannerLength;j++) {
+				do {
+					num = Math.floor(Math.random()*imgSource.length);
+				}while(imgSource[num] == null);
+				self[j].src = imgSource[num];
+				imgSource[num] = null;
+			}
+			setTimeout(arguments.callee,setImgSourceTime);
+		})();
+
+		(function loop() {
+			if(loopNum >= bannerLength) {
+				loopNum = 0;
+			}
+			$(self[loopNum]).addClass('active').siblings().removeClass('active');
+			loopNum++;
+			setTimeout(arguments.callee,loopTime);
+		})();
+
+		
+	}
 </script>
 </body>
 </html>
