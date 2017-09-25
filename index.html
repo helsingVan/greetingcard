@@ -18,29 +18,32 @@
 	<div id="fullPage">
 		<section class="section page_1">
 			<div class="banner">
-				<img data-url="/static/image/bg_01.jpg" alt="" src="/static/image/bg_01.jpg">
+				
 			</div>
 			<button>3424</button>
 		</section>
-		<section class="section">2</section>
-		<section class="section">3</section>
-		<section class="section">4</section>
+		<!-- <section class="section">2</section>
+		<section class="section">3</section> -->
+		<section class="section">
+			<footer class="copyright">
+				<a href="http://www.fanguangcn.xin">
+					<small>&copy;www.fanguangcn.xin</small>
+				</a>
+				<a href="http://http://www.miitbeian.gov.cn" target="_blank">
+					<small>京ICP备17053101号</small>
+				</a>
+			</footer>
+		</section>
 	</div>
 <script>
 	$(document).ready(function() {
 		$('#fullPage').fullpage();
-		// $('#mainBg').bannerLoop({
-		// 	banner: ['./static/image/bg_01.jpg','./static/image/bg_02.jpg','./static/image/bg_03.jpg','./static/image/bg_04.jpg','./static/image/bg_05.jpg','./static/image/bg_06.jpg','./static/image/bg_07.jpg','./static/image/bg_08.jpg','./static/image/bg_09.jpg']
-		// });
-		// $('.main-bg').bannerLoop();
 		bannerLoop();
 	})
 
 	function bannerLoop() {
-		
-		
 		var loopNum = 0;
-		var loopTime = 3000;
+		var loopTime = 6000;
 		var imgNum = 21;
 		var imgHtml = '';
 		var imgUrl = '';
@@ -56,23 +59,25 @@
 						+ ' class="main-bg">';
 		}
 		$('.banner').html(imgHtml);
-		
-
 		var imgs = $('.main-bg');
+		var imgsLength = imgs.length;
 		(function loop() {
-			if(loopNum >= imgs.length) {
+			if(loopNum >= imgsLength) {
 				loopNum = 0;
 			}
-			
-			$(imgs[loopNum]).addClass('active').siblings().removeClass('active');
-			if(!imgs[loopNum].src && $(imgs[loopNum]).hasClass('active')) {
-				imgs[loopNum].src = imgs[loopNum].dataset.url;
+			var currentImg = imgs[loopNum];
+			var nextImg = null;
+			$(currentImg).addClass('active').siblings().removeClass('active');
+			if($(currentImg).hasClass('active')) {
+				currentImg.src = currentImg.dataset.url;
+				if(loopNum !== imgsLength-1) {
+					nextImg = imgs[loopNum + 1];
+					nextImg.src = nextImg.dataset.url;
+				}
 			}
 			loopNum++;
 			setTimeout(arguments.callee,loopTime);
-		})();
-
-		
+		})();	
 	}
 </script>
 </body>
