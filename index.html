@@ -7,53 +7,18 @@
 	<meta name="description" content="前端,前端简历,前端博客,前端工程师,html,html5,javascript,范广的博客">
 	<meta name="author" content="范广,helsingvan">
 	<link rel="shortcut icon" href="favicon.ico">
-	<link rel="stylesheet" href="./lib/html5-reset/assets/css/reset.css">
-	<link rel="stylesheet" href="./lib/fullpage/jquery.fullpage.min.css">
-	<link rel="stylesheet" href="./static/main.css">
-	<script src="./lib/jquery/dist/jquery.min.js"></script>
-	<script src="./lib/fullpage/jquery.fullpage.min.js"></script>
+	<link rel="stylesheet" href="/lib/html5-reset/assets/css/reset.css">
+	<link rel="stylesheet" href="/lib/fullpage/jquery.fullpage.min.css">
+	<link rel="stylesheet" href="/static/main.css">
+	<script src="/lib/jquery/dist/jquery.min.js"></script>
+	<script src="/lib/fullpage/jquery.fullpage.min.js"></script>
 	<title>范广的主页</title>
-	
-	<style>
-	    html,body {
-			height: 100%;
-			overflow: auto;
-			font-family: "microsoft yahei";
-	    }
-		
-		.avatar {
-			border-radius: 50%;
-			overflow: hidden;
-			margin-bottom: 30px;
-		}
-		.link {
-			margin-top: 20px;
-		}
-		.link a {
-			text-decoration: none;
-			padding: 10px 20px;
-			margin: 0 5px;
-			background: #fff;
-			border-radius: 2px;
-		}
-	</style>
 </head>
 <body>
-	<!-- <div class="banner">
-		<div class="avatar">
-			<img src="./static/image/user.jpg" alt="" width="150" height="150">
-		</div>
-		<h1>HelsingVan</h1>
-		<h2>抓狂中的前端攻城狮</h2>
-		<div class="link">
-			<a href="https://my.oschina.net/huskydog/blog">BLOG</a>
-			<a href="https://github.com/helsingVan">GITHUB</a>
-		</div>
-	</div> -->
 	<div id="fullPage">
 		<section class="section page_1">
 			<div class="banner">
-				<img data-url="./static/image/bg_01.jpg" alt="" src="./static/image/bg_01.jpg">
+				<img data-url="/static/image/bg_01.jpg" alt="" src="/static/image/bg_01.jpg">
 			</div>
 			<button>3424</button>
 		</section>
@@ -86,7 +51,7 @@
 			}else {
 				imgIndex = i;
 			}
-			imgUrl = './static/image/bg_' + imgIndex + '.jpg';
+			imgUrl = '/static/image/bg_' + imgIndex + '.jpg';
 			imgHtml += '<img data-url="' + imgUrl + '"'
 						+ ' class="main-bg">';
 		}
