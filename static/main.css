@@ -8,15 +8,23 @@
 	opacity: .5;*/
 	position: relative;
 }
-.page_1 img {
+.page_1 .banner {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
 	z-index: -1;
+}
+.page_1 .banner img {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 	opacity: 0;
-	transition: all 1s;
+	transition: all .3s;
 }
 .page_1 img.active {
 	opacity: 1;

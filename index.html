@@ -20,23 +20,7 @@
 			overflow: auto;
 			font-family: "microsoft yahei";
 	    }
-		.banner {
-			height: 100%;
-			display: flex;
-			flex-flow: column nowrap;
-			justify-content: center;
-			align-items: center;
-			background: url("./static/image/bg-index.png") center center;
-		}
-		.banner h1,
-		.banner h2 {
-			color: #fff;
-			font-size: 28px;
-			margin: 5px;
-		}
-		.banner h2 {
-			font-size: 24px;
-		}
+		
 		.avatar {
 			border-radius: 50%;
 			overflow: hidden;
@@ -68,11 +52,9 @@
 	</div> -->
 	<div id="fullPage">
 		<section class="section page_1">
-			<img src="./static/image/bg_01.jpg" alt="" class="main-bg active">
-			<img src="./static/image/bg_02.jpg" alt="" class="main-bg">
-			<img src="./static/image/bg_03.jpg" alt="" class="main-bg">
-			<img src="./static/image/bg_04.jpg" alt="" class="main-bg">
-			
+			<div class="banner">
+				<img data-url="./static/image/bg_01.jpg" alt="" src="./static/image/bg_01.jpg">
+			</div>
 			<button>3424</button>
 		</section>
 		<section class="section">2</section>
@@ -85,46 +67,42 @@
 		// $('#mainBg').bannerLoop({
 		// 	banner: ['./static/image/bg_01.jpg','./static/image/bg_02.jpg','./static/image/bg_03.jpg','./static/image/bg_04.jpg','./static/image/bg_05.jpg','./static/image/bg_06.jpg','./static/image/bg_07.jpg','./static/image/bg_08.jpg','./static/image/bg_09.jpg']
 		// });
-		$('.main-bg').bannerLoop();
+		// $('.main-bg').bannerLoop();
+		bannerLoop();
 	})
 
-	$.prototype.bannerLoop = function() {
-		var self = this;
-		var bannerLength = this.length;
+	function bannerLoop() {
+		
 		
 		var loopNum = 0;
 		var loopTime = 3000;
-		var setImgSourceTime = 9200;
+		var imgNum = 21;
+		var imgHtml = '';
+		var imgUrl = '';
+		var imgIndex = 1;
+		for(var i=1;i<imgNum;i++) {
+			if(i < 10) {
+				imgIndex = '0'+ i;
+			}else {
+				imgIndex = i;
+			}
+			imgUrl = './static/image/bg_' + imgIndex + '.jpg';
+			imgHtml += '<img data-url="' + imgUrl + '"'
+						+ ' class="main-bg">';
+		}
+		$('.banner').html(imgHtml);
 		
 
-		(function setImgSource(){
-			var num;
-			var imgSource = [],imgUrl,index;
-			for(var i=1;i<21;i++) {
-				if(i < 10) {
-					index = '0' + i;
-				}else {
-					index = i;
-				}
-				imgUrl = './static/image/bg_' + index + '.jpg';
-				imgSource.push(imgUrl);
-			}
-
-			for(var j=0;j<bannerLength;j++) {
-				do {
-					num = Math.floor(Math.random()*imgSource.length);
-				}while(imgSource[num] == null);
-				self[j].src = imgSource[num];
-				imgSource[num] = null;
-			}
-			setTimeout(arguments.callee,setImgSourceTime);
-		})();
-
+		var imgs = $('.main-bg');
 		(function loop() {
-			if(loopNum >= bannerLength) {
+			if(loopNum >= imgs.length) {
 				loopNum = 0;
 			}
-			$(self[loopNum]).addClass('active').siblings().removeClass('active');
+			
+			$(imgs[loopNum]).addClass('active').siblings().removeClass('active');
+			if(!imgs[loopNum].src && $(imgs[loopNum]).hasClass('active')) {
+				imgs[loopNum].src = imgs[loopNum].dataset.url;
+			}
 			loopNum++;
 			setTimeout(arguments.callee,loopTime);
 		})();
