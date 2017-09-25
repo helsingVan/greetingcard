@@ -7,22 +7,17 @@ a {
 
 
 
-
+/* main */
 .section {
 	position: relative;
 }
-
-
-.page_1 {
-	/*background-image: url("./image/bg_01.jpg");
-	background-repeat: no-repeat;
-	background-position: center;
-	background-attachment: fixed;
-	background-size: 100% 100%;
-	opacity: .5;*/
-	position: relative;
+.container {
+	padding: 60px 60px 20px 60px;
+	height: 100%;
 }
-.page_1 .banner {
+
+
+.banner {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -30,7 +25,7 @@ a {
 	height: 100%;
 	z-index: -1;
 }
-.page_1 .banner img {
+.banner img {
 	display: block;
 	position: absolute;
 	top: 0;
@@ -40,9 +35,97 @@ a {
 	opacity: 0;
 	transition: all .3s;
 }
-.page_1 img.active {
+.banner img.active {
 	opacity: 1;
 }
+.nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 20px 60px;
+}
+.nav a{
+	display: inline-block;
+	color: #ffca28;
+	font-size: 18px;
+	font-weight: 900;
+	text-align: center;
+	transition: all .5s;
+}
+.nav a:hover {
+	color: #ffa000;
+}
+
+/* 关于我 */
+.page_1 .container {
+	display: flex;
+	overflow: hidden;
+}
+.page_1 .wrapper {
+	flex: 0 1 50%;
+	padding: 0 20px;
+}
+.page_1 .wrapper:last-child {
+	border-left: 1px solid red;
+}
+.page_1 h2 {
+	font-size: 24px;
+	font-weight: 900;
+	color: #fff;
+	padding-bottom: 20px;
+}
+.page_1 .work ul {
+	position: relative;
+	padding-left: 20px;
+}
+.page_1 .work ul::before {
+	display: block;
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: #fff;
+	height: 100%;
+	width: 8px;
+	border-radius: 5px;
+}
+.page_1 .work li {
+	min-height: 100px;
+	position: relative;
+}
+.page_1 .work .anchor {
+	position: absolute;
+	top: 10px;
+	left: -30px;
+	width: 16px;
+	height: 16px;
+	background: #fff;
+	border: 6px solid #ffca28;
+	border-radius: 50%;
+	box-sizing: content-box;
+}
+.page_1 .work .content {
+	position: relative;
+	margin-left: 20px;
+	background: #ffca28;
+}
+.page_1 .work .content::before {
+	position: absolute;
+	content: '';
+	display: block;
+	border: 10px solid transparent;
+	border-right: 10px solid #fff;
+	top: 14px;
+	left: -20px;
+}
+.page_1 .work h3 {
+	padding-top: 14px;
+	padding-left: 20px;
+	color: #fff;
+}
+
+
 
 
 
