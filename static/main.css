@@ -44,6 +44,7 @@ a {
 	left: 0;
 	width: 100%;
 	padding: 20px 60px;
+	z-index: 10;
 }
 .nav a{
 	display: inline-block;
@@ -53,33 +54,34 @@ a {
 	text-align: center;
 	transition: all .5s;
 }
-.nav a:hover {
+.nav a:hover,
+.nav a.active {
 	color: #ffa000;
 }
 
 /* 关于我 */
-.page_1 .container {
+.page_2 .container {
 	display: flex;
 	overflow: hidden;
 }
-.page_1 .wrapper {
+.page_2 .wrapper {
 	flex: 0 1 50%;
 	padding: 0 20px;
 }
-.page_1 .wrapper:last-child {
-	border-left: 1px solid red;
+.page_2 .wrapper:last-child {
+	/*border-left: 1px solid red;*/
 }
-.page_1 h2 {
+.page_2 h2 {
 	font-size: 24px;
 	font-weight: 900;
 	color: #fff;
 	padding-bottom: 20px;
 }
-.page_1 .work ul {
+.page_2 .work ul {
 	position: relative;
 	padding-left: 20px;
 }
-.page_1 .work ul::before {
+.page_2 .work ul::before {
 	display: block;
 	content: '';
 	position: absolute;
@@ -90,11 +92,12 @@ a {
 	width: 8px;
 	border-radius: 5px;
 }
-.page_1 .work li {
+.page_2 .work li {
 	min-height: 100px;
 	position: relative;
 }
-.page_1 .work .anchor {
+
+.page_2 .work .anchor {
 	position: absolute;
 	top: 10px;
 	left: -30px;
@@ -105,23 +108,25 @@ a {
 	border-radius: 50%;
 	box-sizing: content-box;
 }
-.page_1 .work .content {
+.page_2 .work .content {
 	position: relative;
 	margin-left: 20px;
+	padding-left: 20px;
+	padding-bottom: 20px;
+	border-radius: 6px;
 	background: #ffca28;
 }
-.page_1 .work .content::before {
+.page_2 .work .content::before {
 	position: absolute;
 	content: '';
 	display: block;
 	border: 10px solid transparent;
-	border-right: 10px solid #fff;
+	border-right: 10px solid #ffca28;
 	top: 14px;
 	left: -20px;
 }
-.page_1 .work h3 {
-	padding-top: 14px;
-	padding-left: 20px;
+.page_2 .work h3 {
+	padding: 14px 0;
 	color: #fff;
 }
 

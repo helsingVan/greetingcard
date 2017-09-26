@@ -1,13 +1,37 @@
 $(document).ready(function(){
 	$('#fullPage').fullpage({
 		verticalCentered: false,
-		navigation: true
+		// navigation: true,
+		anchors: ['home','about','blog','concat'],
+		// 循环滚动
+		// continuousVertical: true,
+		menu: '#menu',
+		afterLoad: fullpage.afterLoad,
+		onLeave: fullpage.onLeave
 	});
 	bannerLoop();
-
+	initEchart();
 });
 
+var fullpage = {};
+fullpage.afterLoad = function(anchorLink,index) {
+	// console.log(index);
+};
+fullpage.onLeave = function(index,nextIndex,direction) {
+	console.log(nextIndex);
+};
+fullpage.afterRender = function () {
 
+};
+fullpage.afterResize = function() {
+
+};
+fullpage.afterSlideLoad = function(anchorLink,index,slideAnchor,slideIndex) {
+
+};
+fullpage.onSlideLeave = function(anchorLink,index,slideIndex,direction,nextSlideIndex) {
+
+}
 function bannerLoop() {
 		var loopNum = 0;
 		var loopTime = 6000;
@@ -45,4 +69,41 @@ function bannerLoop() {
 			loopNum++;
 			setTimeout(arguments.callee,loopTime);
 		})();	
+}
+function initEchart() {
+	var myChart = echarts.init(document.getElementById('echart'));
+	var option = {
+		tooltip: { trigger: 'item'},
+		radar: {
+			name: {
+				textStyle: {
+					color: '#ffca28',
+					fontSize: 14
+				}
+			},
+			shape: 'circle',
+			indicator: [
+				{name: 'HTML,CSS',max:100},
+				{name: 'Javascript',max:100},
+				{name: 'Vue',max:100},
+				{name: 'React',max:100},
+				{name: 'Node',max:100},
+				{name: 'PHP',max:100},
+			]
+		},
+		series: [
+			{
+				name: '技能概览',
+				type: 'radar',
+				lineStyle: {
+					normal: {color: '#ffca28'}
+				},
+				areaStyle: {
+					normal: {color: '#ffca28',opacity: 0.5}
+				},
+				data: [{value: [90,80,80,80,70,60]}]
+			}
+		]
+	}
+	myChart.setOption(option);
 }

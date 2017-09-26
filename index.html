@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="/static/main.css">
 	<script src="/lib/jquery/dist/jquery.min.js"></script>
 	<script src="/lib/fullpage/jquery.fullpage.min.js"></script>
+	<script src="/lib/echarts/echarts.min.js"></script>
 	<title>范广的主页</title>
 	<script src="/static/main.js" defer></script>
 </head>
@@ -19,33 +20,42 @@
 	<div class="banner">
 				
 	</div>
-	<nav class="nav">
-		<a href="##">Home</a>
-		<a href="##">Blog</a>
-		<a href="##">About Me</a>
-		<a href="##">Concat</a>
+	<nav class="nav" id='menu'>
+		<a href="#home" class="active" data-menuanchor="home">Home</a>
+		<a href="#about" data-menuanchor="about">Blog</a>
+		<a href="#blog" data-menuanchor="blog">About Me</a>
+		<a href="#concat" data-menuanchor="concat">Concat</a>
 	</nav>
 	<div id="fullPage">
 		<section class="section page_1">
 			
+			
+		</section>
+		<section class="section page_2">
 			<div class="container">
 				<section class="wrapper">
 					<h2>技能</h2>
+					<div class="skill">
+						<div id="echart" style="height:300px"></div>
+					</div>
 				</section>
 				<section class="wrapper">
 					<h2>工作经历</h2>
 					<div class="work">
+
 						<ul>
 							<li>
 								<a href="" class="anchor"></a>
 								<div class="content">
 									<h3>北京六间房科技有限公司（2017-05-15~至今）</h3>
+									<p>前端工程师</p>
 								</div>
 							</li>
 							<li>
 								<a href="" class="anchor"></a>
 								<div class="content">
 									<h3>北京百度（2014-09-15~2017-05-12）</h3>
+									<p>前端工程师</p>
 								</div>
 							</li>
 							
@@ -54,7 +64,6 @@
 				</section>
 			</div>
 		</section>
-		<section class="section">BLog</section>
 		<section class="section">ablout</section>
 		<section class="section">
 			<footer class="copyright">
