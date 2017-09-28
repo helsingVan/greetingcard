@@ -2,13 +2,16 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta name="subject" content="个人博客网站">
 	<meta name="keywords" content="前端,前端简历,前端博客,前端工程师,html,html5,javascript,范广">
 	<meta name="description" content="前端,前端简历,前端博客,前端工程师,html,html5,javascript,范广的博客">
 	<meta name="author" content="范广,helsingvan">
 	<link rel="shortcut icon" href="favicon.ico">
 	<link rel="stylesheet" href="/lib/html5-reset/assets/css/reset.css">
-	<link rel="stylesheet" href="/lib/fullpage/jquery.fullpage.min.css">
+	<link rel="stylesheet" href="/static/animate.css">
+	<!-- <link rel="stylesheet" href="/lib/fullpage/jquery.fullpage.min.css"> -->
 	<link rel="stylesheet" href="/static/main.css">
 	<script src="/lib/jquery/dist/jquery.min.js"></script>
 	<script src="/lib/fullpage/jquery.fullpage.min.js"></script>
@@ -20,7 +23,7 @@
 	<div class="banner">
 				
 	</div>
-	<nav class="nav" id='menu'>
+	<nav class="nav animated none" id='menu'>
 		<a href="#home" class="active" data-menuanchor="home">Home</a>
 		<a href="#about" data-menuanchor="about">Blog</a>
 		<a href="#blog" data-menuanchor="blog">About Me</a>
@@ -28,7 +31,27 @@
 	</nav>
 	<div id="fullPage">
 		<section class="section page_1">
-			
+			<div class="container animated main none" id="page_1_main">
+				<div class="main-wrapper">
+					<figure class="admin">
+						<img src="/static/image/user.jpg" alt="">
+						<figcaption>
+							<a href="##"><img src="/static/image/qq.png" alt=""></a>
+							<a href="##"><img src="/static/image/wexin.png" alt=""></a>
+							<a href="##"><img src="/static/image/weibo.png" alt=""></a>
+							<a href="##"><img src="/static/image/github.jpg" alt=""></a>
+						</figcaption>
+					</figure>
+				</div>
+			</div>
+			<div class="container container-column animated" id="startBegin">
+				<figure class="heyman"></figure>
+				<figure class="driver"></figure>
+				<div class="start">
+					<a href="javascript:void(0);" id="starting">Start</a>
+					<a href="/blog">Blog</a>
+				</div>
+			</div>
 			
 		</section>
 		<section class="section page_2">
@@ -42,7 +65,6 @@
 				<section class="wrapper">
 					<h2>工作经历</h2>
 					<div class="work">
-
 						<ul>
 							<li>
 								<a href="" class="anchor"></a>
@@ -58,7 +80,6 @@
 									<p>前端工程师</p>
 								</div>
 							</li>
-							
 						</ul>
 					</div>
 				</section>

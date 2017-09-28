@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	location.hash = '';
 	$('#fullPage').fullpage({
 		verticalCentered: false,
 		// navigation: true,
@@ -7,10 +8,13 @@ $(document).ready(function(){
 		// continuousVertical: true,
 		menu: '#menu',
 		afterLoad: fullpage.afterLoad,
-		onLeave: fullpage.onLeave
+		onLeave: fullpage.onLeave,
+		afterRender: fullpage.afterRender
 	});
+	// console.log(fullpage);
 	bannerLoop();
 	initEchart();
+	$('#starting').on('click',starting);
 });
 
 var fullpage = {};
@@ -31,6 +35,9 @@ fullpage.afterSlideLoad = function(anchorLink,index,slideAnchor,slideIndex) {
 };
 fullpage.onSlideLeave = function(anchorLink,index,slideIndex,direction,nextSlideIndex) {
 
+}
+fullpage.afterRender = function() {
+	$.fn.fullpage.setAllowScrolling(false,'down');
 }
 function bannerLoop() {
 		var loopNum = 0;
@@ -106,4 +113,19 @@ function initEchart() {
 		]
 	}
 	myChart.setOption(option);
+}
+function starting() {
+	$.fn.fullpage.setAllowScrolling(true,'down');
+	var menu = document.getElementById('menu');
+	var startBegin = document.getElementById('startBegin');
+	var main = document.getElementById('page_1_main');
+	startBegin.classList.add('bounceOut');
+	menu.classList.add('bounceInRight');
+	menu.classList.remove('none');
+	main.classList.add('flipInX');
+	main.classList.remove('none');
+}
+var obj = {};
+obj.test = function() {
+	console.log(this);
 }
