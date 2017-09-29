@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta name="subject" content="个人网站，相框">
+	<meta name="description" content="个人相框网站">
+	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="stylesheet" href="/lib/html5-reset/assets/css/reset.css">
+	<title>photo</title>
+	<script src="/lib/velocity/velocity.min.js"></script>
+	<script>
+		window.V = window.Velocity;
+	</script>
+	
+</head>
+<body>
+	<div id="container" style="background:red;width:200px;height:200px"></div>
+
+	<script>
+		document.onreadystatechange = function() {
+			console.log(document.readyState);
+			// uninitialized 还未开始载入
+			// loading 载入中
+			// interactive 已加载，用户可以与文档开始交互
+			// complete 加载完毕
+			if(document.readyState === 'complete') {
+				loading();
+			}
+		}
+		function loading() {
+			var div = document.getElementById('container');
+			V(div,{
+				width:10,
+				height:10
+			})
+		}
+	</script>
+</body>
+</html>

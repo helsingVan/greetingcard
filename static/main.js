@@ -12,9 +12,7 @@ $(document).ready(function(){
 		afterRender: fullpage.afterRender
 	});
 	// console.log(fullpage);
-	bannerLoop();
-	initEchart();
-	$('#starting').on('click',starting);
+	main.init();
 });
 
 var fullpage = {};
@@ -39,7 +37,16 @@ fullpage.onSlideLeave = function(anchorLink,index,slideIndex,direction,nextSlide
 fullpage.afterRender = function() {
 	$.fn.fullpage.setAllowScrolling(false,'down');
 }
-function bannerLoop() {
+
+var main = {
+	echartEl: 'echart',
+	startEl: '#starting',
+	init: function() {
+		this.bannerLoop();
+		this.initEchart();
+		$(this.startEl).on('click',this._handelStart);
+	},
+	bannerLoop: function() {
 		var loopNum = 0;
 		var loopTime = 6000;
 		var imgNum = 21;
@@ -76,56 +83,53 @@ function bannerLoop() {
 			loopNum++;
 			setTimeout(arguments.callee,loopTime);
 		})();	
-}
-function initEchart() {
-	var myChart = echarts.init(document.getElementById('echart'));
-	var option = {
-		tooltip: { trigger: 'item'},
-		radar: {
-			name: {
-				textStyle: {
-					color: '#ffca28',
-					fontSize: 14
-				}
+	},
+	initEchart: function() {
+		var myChart = echarts.init(document.getElementById(this.echartEl));
+		var option = {
+			tooltip: { trigger: 'item'},
+			radar: {
+				name: {
+					textStyle: {
+						color: '#ffca28',
+						fontSize: 14
+					}
+				},
+				shape: 'circle',
+				indicator: [
+					{name: 'HTML,CSS',max:100},
+					{name: 'Javascript',max:100},
+					{name: 'Vue',max:100},
+					{name: 'React',max:100},
+					{name: 'Node',max:100},
+					{name: 'PHP',max:100},
+				]
 			},
-			shape: 'circle',
-			indicator: [
-				{name: 'HTML,CSS',max:100},
-				{name: 'Javascript',max:100},
-				{name: 'Vue',max:100},
-				{name: 'React',max:100},
-				{name: 'Node',max:100},
-				{name: 'PHP',max:100},
+			series: [
+				{
+					name: '技能概览',
+					type: 'radar',
+					lineStyle: {
+						normal: {color: '#ffca28'}
+					},
+					areaStyle: {
+						normal: {color: '#ffca28',opacity: 0.5}
+					},
+					data: [{value: [90,80,80,80,70,60]}]
+				}
 			]
-		},
-		series: [
-			{
-				name: '技能概览',
-				type: 'radar',
-				lineStyle: {
-					normal: {color: '#ffca28'}
-				},
-				areaStyle: {
-					normal: {color: '#ffca28',opacity: 0.5}
-				},
-				data: [{value: [90,80,80,80,70,60]}]
-			}
-		]
+		}
+		myChart.setOption(option);
+	},
+	_handelStart: function() {
+		$.fn.fullpage.setAllowScrolling(true,'down');
+		var menu = document.getElementById('menu');
+		var startBegin = document.getElementById('startBegin');
+		var main = document.getElementById('page_1_main');
+		startBegin.classList.add('bounceOut');
+		menu.classList.add('bounceInRight');
+		menu.classList.remove('none');
+		main.classList.add('flipInX');
+		main.classList.remove('none');
 	}
-	myChart.setOption(option);
-}
-function starting() {
-	$.fn.fullpage.setAllowScrolling(true,'down');
-	var menu = document.getElementById('menu');
-	var startBegin = document.getElementById('startBegin');
-	var main = document.getElementById('page_1_main');
-	startBegin.classList.add('bounceOut');
-	menu.classList.add('bounceInRight');
-	menu.classList.remove('none');
-	main.classList.add('flipInX');
-	main.classList.remove('none');
-}
-var obj = {};
-obj.test = function() {
-	console.log(this);
-}
+};
