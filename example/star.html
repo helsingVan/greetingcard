@@ -59,6 +59,7 @@
 				num: 2,
 				star: 'fa-star',
 				starO: 'fa-star-o',
+				readOnly: false,
 				select: null,
 				chosen: null
 			};
@@ -77,7 +78,10 @@
 				this.init();
 			}
 			StarOnInt.prototype.init = function() {
-				this.starOn(this.option.num).bindEvent();
+				this.starOn(this.option.num);
+				if(!this.option.readOnly) {
+					this.bindEvent();
+				}
 			};
 			StarOnInt.prototype.starOn = function(num) {
 				var self = this;
@@ -107,16 +111,60 @@
 				});
 				return this;
 			}
+
+			// 点亮半颗
+			function StarOnHalf(el,option) {
+				this.$starCon = $(el);
+				this.$stars = $(el).find('li');
+				this.option = option;
+				this.init();
+			}
+			StarOnHalf.prototype.init = function() {
+				this.starOn(this.option.num);
+				if(!this.option.readOnly) {
+					this.bindEvent();
+				}
+			};
+			StarOnHalf.prototype.starOn = function(num) {
+				var self = this;
+				this.$stars.each(function(index) {
+					if(index < num){
+						$(this).removeClass(self.option.starO).addClass(self.option.star);
+					}else {
+						$(this).get(0).className = 'fa ' + self.option.starO;
+					}
+				});
+				return this;
+			};
+			StarOnHalf.prototype.bindEvent = function() {
+				var self = this;
+				this.$starCon.on('mouseover click','li',function(e) {
+					var index = $(this).index() + 1;
+					if(e.type === 'click') {
+						self.option.num = index;
+						self.starOn(self.option.num);
+						(typeof self.option.select === 'function') && self.option.chosen.call(this,index,self.$stars.length);
+						self.$starCon.trigger('chosen',[index,self.$stars.length]);
+					}else {
+						self.starOn(index);
+						(typeof self.option.select === 'function') && self.option.select.call(this,index,self.$stars.length);
+						self.$starCon.trigger('select',[index,self.$stars.length]);
+					}
+				});
+				return this;
+			}
+
 			return {init: init};
 		})();
 		star.init('#star',{
-			num: 1,
+			num: 2,
 			select: function(index,allStar) {
 				console.log(index + ' ' + allStar); 
 			},
 			chosen: function(index,allStar) {
 				console.log(index + ' ' + allStar);
-			}
+			},
+			readOnly: false
 		});
 
 	</script>
