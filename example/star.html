@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="cmn">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta name="subject" content="个人网站，星星评级">
+	<meta name="description" content="个人网站">
+	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="stylesheet" href="/lib/html5-reset/assets/css/reset.css">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<title>star</title>
+	<script src="/lib/jquery/dist/jquery.min.js"></script>
+	<style>
+		html,body {
+			height: 100%;
+		}
+		.app {
+			height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-flow: column nowrap;
+		}
+		.star-container {
+			margin: 5px 0;
+		}
+		.star-container li {
+			font-size: 40px;
+			color: #ffca28;
+			margin: 0 3px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="app">
+		<ul class="star-container" id="star">
+			<li class="fa fa-star-o"></li>
+			<li class="fa fa-star-o"></li>
+			<li class="fa fa-star-o"></li>
+			<li class="fa fa-star-o"></li>
+			<li class="fa fa-star-o"></li>
+		</ul>
+		<ul class="star-container" id="star2">
+			<li class="fa fa-star-o"></li>
+			<li class="fa fa-star-o"></li>
+			<li class="fa fa-star-o"></li>
+			<li class="fa fa-star-o"></li>
+			<li class="fa fa-star-o"></li>
+		</ul>
+	</div>
+	
+	<script>
+		var star = (function(){
+
+			// 默认参数
+			var defaultOpt = {
+				num: 2,
+				star: 'fa-star',
+				starO: 'fa-star-o',
+				select: null,
+				chosen: null
+			};
+
+			// 初始化
+			var init = function(el,opts) {
+				opts = $.extend({},defaultOpt,opts);
+				new StarOnInt(el,opts);
+			};
+
+			// 点亮整颗
+			function StarOnInt(el,option) {
+				this.$starCon = $(el);
+				this.$stars = $(el).find('li');
+				this.option = option;
+				this.init();
+			}
+			StarOnInt.prototype.init = function() {
+				this.starOn(this.option.num).bindEvent();
+			};
+			StarOnInt.prototype.starOn = function(num) {
+				var self = this;
+				this.$stars.each(function(index) {
+					if(index < num){
+						$(this).removeClass(self.option.starO).addClass(self.option.star);
+					}else {
+						$(this).get(0).className = 'fa ' + self.option.starO;
+					}
+				});
+				return this;
+			};
+			StarOnInt.prototype.bindEvent = function() {
+				var self = this;
+				this.$starCon.on('mouseover click','li',function(e) {
+					var index = $(this).index() + 1;
+					if(e.type === 'click') {
+						self.option.num = index;
+						self.starOn(self.option.num);
+						(typeof self.option.select === 'function') && self.option.chosen.call(this,index,self.$stars.length);
+						self.$starCon.trigger('chosen',[index,self.$stars.length]);
+					}else {
+						self.starOn(index);
+						(typeof self.option.select === 'function') && self.option.select.call(this,index,self.$stars.length);
+						self.$starCon.trigger('select',[index,self.$stars.length]);
+					}
+				});
+				return this;
+			}
+			return {init: init};
+		})();
+		star.init('#star',{
+			num: 1,
+			select: function(index,allStar) {
+				console.log(index + ' ' + allStar); 
+			},
+			chosen: function(index,allStar) {
+				console.log(index + ' ' + allStar);
+			}
+		});
+
+	</script>
+	<script>
+		// window.onload = function() {
+		// 	new Star('#star',1);
+		// 	new Star('#star2',2);
+		// };
+
+		// var star = (function(){
+		// 	function Star(el,num) {
+		// 		var query = el + ' li';
+		// 		this.starO = 'fa-star-o';
+		// 		this.star = 'fa-star';
+		// 		this.starHalf = 'fa-star-half-o';
+		// 		this.num = num;
+		// 		this.starContainer = document.querySelector(el);
+		// 		this.stars = Array.prototype.slice.call(document.querySelectorAll(query),0);
+		// 		this.init();
+		// 	}
+		// 	Star.prototype.init = function() {
+		// 		this.starOn(this.num);
+		// 		this.bindEvent();
+		// 	};
+		// 	Star.prototype.starOn = function(num) {
+		// 		var _this = this;
+		// 		this.stars.forEach(function(v,i) {
+		// 			if(i < num) {
+		// 				v.classList.remove(_this.starO);
+		// 				v.classList.add(_this.star);
+		// 			}else {
+		// 				v.className = 'fa ' + _this.starO;
+		// 			}
+		// 		});
+		// 	};
+		// 	Star.prototype.BindEvent = function() {
+		// 		var _this = this;
+		// 		this.stars.forEach(function(v){
+		// 			v.addEventListener('mouseover',handle,false);
+		// 			v.addEventListener('click',handle,false);
+		// 		});
+		// 		this.starContainer.addEventListener('mouseout',mouseoutHandle,false);
+		// 		function handle(e) {
+		// 			var thisStar = this;
+		// 			var thisStarIndex = _this.index(thisStar);
+		// 			if(e.type === 'click') {
+		// 				_this.num = thisStarIndex + 1;
+		// 			}
+		// 			_this.starOn(thisStarIndex + 1);
+		// 		}
+		// 		function mouseoutHandle() {
+		// 			_this.starOn(_this.num);
+		// 		}
+		// 	};
+		// 	Star.prototype.index = function(currentStar) {
+		// 		for(var i=0;i<this.stars.length;i++) {
+		// 			if(currentStar === this.stars[i]) {
+		// 				return i;
+		// 			}
+		// 		}
+		// 	}
+
+		// })();
+		
+	</script>
+</body>
+</html>
