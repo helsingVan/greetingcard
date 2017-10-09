@@ -8,7 +8,8 @@
 	<meta name="description" content="个人网站">
 	<link rel="shortcut icon" href="/favicon.ico">
 	<link rel="stylesheet" href="/lib/html5-reset/assets/css/reset.css">
-	<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+	<link rel="stylesheet" href="/lib/font/css/font-awesome.min.css">
 	<title>star</title>
 	<script src="/lib/jquery/dist/jquery.min.js"></script>
 	<style>
@@ -43,7 +44,7 @@
 			<li class="fa fa-star-o"></li>
 		</ul>
 		<ul class="star-container" id="star2">
-			<li class="fa fa-star-o"></li>
+			<li class="fa fa-star-half-o"></li>
 			<li class="fa fa-star-o"></li>
 			<li class="fa fa-star-o"></li>
 			<li class="fa fa-star-o"></li>
@@ -59,6 +60,7 @@
 				num: 2,
 				star: 'fa-star',
 				starO: 'fa-star-o',
+				starHalf: 'fa-star-half-o',
 				readOnly: false,
 				select: null,
 				chosen: null
@@ -67,7 +69,7 @@
 			// 初始化
 			var init = function(el,opts) {
 				opts = $.extend({},defaultOpt,opts);
-				new StarOnInt(el,opts);
+				new StarOnHalf(el,opts);
 			};
 
 			// 点亮整颗
@@ -127,19 +129,31 @@
 			};
 			StarOnHalf.prototype.starOn = function(num) {
 				var self = this;
+				var lastHalfNum = Math.floor(num);
 				this.$stars.each(function(index) {
-					if(index < num){
-						$(this).removeClass(self.option.starO).addClass(self.option.star);
+					console.log(num)
+					if(index + 1 <= num){
+						$(this).get(0).className = 'fa ' + self.option.star;
 					}else {
 						$(this).get(0).className = 'fa ' + self.option.starO;
 					}
+
 				});
+				if(num % lastHalfNum !== 0 && lastHalfNum < 5 && num !== 0) {
+					self.$stars[lastHalfNum].className = 'fa ' + self.option.starHalf;
+				}
+				
 				return this;
 			};
 			StarOnHalf.prototype.bindEvent = function() {
 				var self = this;
-				this.$starCon.on('mouseover click','li',function(e) {
+				var starHalfWidth,isHalf;
+				this.$starCon.on('mouseover click mousemove','li',function(e) {
 					var index = $(this).index() + 1;
+					starHalfWidth = $(this).width() / 2;
+					if(e.pageX - $(this).offset().left < starHalfWidth) {
+						index = index - 0.5;
+					}
 					if(e.type === 'click') {
 						self.option.num = index;
 						self.starOn(self.option.num);
@@ -157,78 +171,92 @@
 			return {init: init};
 		})();
 		star.init('#star',{
-			num: 2,
+			num: 3,
 			select: function(index,allStar) {
-				console.log(index + ' ' + allStar); 
+				// console.log(index + ' ' + allStar); 
 			},
 			chosen: function(index,allStar) {
-				console.log(index + ' ' + allStar);
+				// console.log(index + ' ' + allStar);
 			},
 			readOnly: false
 		});
 
 	</script>
-	<script>
-		// window.onload = function() {
-		// 	new Star('#star',1);
-		// 	new Star('#star2',2);
-		// };
+	<!-- <script>
+		var star = (function(){
 
-		// var star = (function(){
-		// 	function Star(el,num) {
-		// 		var query = el + ' li';
-		// 		this.starO = 'fa-star-o';
-		// 		this.star = 'fa-star';
-		// 		this.starHalf = 'fa-star-half-o';
-		// 		this.num = num;
-		// 		this.starContainer = document.querySelector(el);
-		// 		this.stars = Array.prototype.slice.call(document.querySelectorAll(query),0);
-		// 		this.init();
-		// 	}
-		// 	Star.prototype.init = function() {
-		// 		this.starOn(this.num);
-		// 		this.bindEvent();
-		// 	};
-		// 	Star.prototype.starOn = function(num) {
-		// 		var _this = this;
-		// 		this.stars.forEach(function(v,i) {
-		// 			if(i < num) {
-		// 				v.classList.remove(_this.starO);
-		// 				v.classList.add(_this.star);
-		// 			}else {
-		// 				v.className = 'fa ' + _this.starO;
-		// 			}
-		// 		});
-		// 	};
-		// 	Star.prototype.BindEvent = function() {
-		// 		var _this = this;
-		// 		this.stars.forEach(function(v){
-		// 			v.addEventListener('mouseover',handle,false);
-		// 			v.addEventListener('click',handle,false);
-		// 		});
-		// 		this.starContainer.addEventListener('mouseout',mouseoutHandle,false);
-		// 		function handle(e) {
-		// 			var thisStar = this;
-		// 			var thisStarIndex = _this.index(thisStar);
-		// 			if(e.type === 'click') {
-		// 				_this.num = thisStarIndex + 1;
-		// 			}
-		// 			_this.starOn(thisStarIndex + 1);
-		// 		}
-		// 		function mouseoutHandle() {
-		// 			_this.starOn(_this.num);
-		// 		}
-		// 	};
-		// 	Star.prototype.index = function(currentStar) {
-		// 		for(var i=0;i<this.stars.length;i++) {
-		// 			if(currentStar === this.stars[i]) {
-		// 				return i;
-		// 			}
-		// 		}
-		// 	}
+			var defaultOpt = {
+				readOnly: true,
+				starO: 'star',
+				star
+			}
 
-		// })();
-		
-	</script>
+			var defaultOpt = {
+				num: 2,
+				star: 'fa-star',
+				starO: 'fa-star-o',
+				starHalf: 'fa-star-half-o',
+				readOnly: true,
+				select: null,
+				chosen: null
+			};
+
+			var init = function(el,options) {
+				var _options = $.extend({},defaultOpt,options);
+				new StarOnInt(el,_options);
+			};
+
+			function StarOnInt(el,option) {
+				this.$starCon = $(el);
+				this.$stars = $(el).find('li');
+				this.opt = option;
+				this.init();
+			}
+			StarOnInt.prototype.init = function() {
+				this.starOn(this.opt.num);
+				if(!this.opt.readOnly) {
+					this.bindEvent();
+				}
+			}
+			StarOnInt.prototype.starOn = function(num) {
+				var self = this;
+				this.$stars.each(function(index,star) {
+					if(index < num) {
+						star.className = 'fa ' + self.opt.star;
+					}else {
+						star.className  = 'fa ' + self.opt.starO;
+					}
+				});
+				return this;
+			}
+			StarOnInt.prototype.bindEvent = function() {
+				var self = this;
+				this.$starCon.on('mouseover click','li',function(e) {
+					var eventType = e.type;
+					var index = $(this).index();
+					var starOnNum = $(this).index() + 1;
+					if(eventType === 'click') {
+						self.opt.num = starOnNum;
+						(typeof self.opt.chosen === 'function') && self.opt.chosen.call(this,index);
+					}else {
+						(typeof self.opt.select === 'function') && self.opt.select.call(this,index);
+					}
+					self.starOn(starOnNum);
+				});
+				return this;
+			}
+			return {init: init};
+		})();
+
+		star.init('#star',{
+			num: 2,
+			chosen: function(index) {
+				console.log(index);
+			},
+			select: function(index) {
+				console.log(index);
+			}
+		})
+	</script> -->
 </body>
 </html>

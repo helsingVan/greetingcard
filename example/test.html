@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box">
+		<p id="one">一</p>
+	</div>
+
+	<script>
+		var p = document.createElement('p');
+		var box = document.getElementById('box');
+		var p1 = document.getElementById('one');
+		p.innerText = '二';
+		box.appendChild(p).parentNode.removeChild(p1);
+	</script>
+</body>
+</html>
