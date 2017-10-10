@@ -1,0 +1,25 @@
+/* common */
+a {
+	text-decoration: none;
+}
+.none {
+	display: none!important;
+}
+.l {
+	 float: left;
+}
+.r {
+	float: right;
+}
+
+.loading {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #fff url('/static/image/loading.gif') no-repeat center;
+	z-index: 10000;
+}

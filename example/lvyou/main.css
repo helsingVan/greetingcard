@@ -1,0 +1,184 @@
+/*背景*/
+#fullpage > section {
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	position: relative;
+	overflow: hidden;
+	padding: 30px 100px 0 100px;
+}
+.page_1 {
+	background-image: url("/static/image/lvyou/bg_01.jpg");
+}
+.page_2 {
+	background-image: url("/static/image/lvyou/bg_02.jpg");
+}
+.page_3 {
+	background-image: url("/static/image/lvyou/bg_03.jpg");
+}
+.page_4 {
+	background-image: url("/static/image/lvyou/bg_04.jpg");
+}
+.page_5 {
+	background-image: url("/static/image/lvyou/bg_05.jpg");
+}
+
+/*页面一*/
+.page_1 nav {
+	line-height: 44px;
+}
+.page_1 .nav li{
+	float: left;
+}
+.page_1 .nav a {
+	padding: 10px 20px;
+	color: #fff;
+	font-size: 16px;
+}
+.page_1 .nav a:hover {
+	border-bottom: 4px solid #fff;
+}
+.page_1 .main {
+	color: #fff;
+	margin-top: 20px;
+	text-align: center;
+}
+.page_1 .main h1 {
+	font-size: 70px;
+}
+.page_1 .main span {
+	text-shadow: 0 2px 2px #73A1C1;
+}
+.page_1 .main p {
+	font-size: 20px;
+	text-shadow: 0 2px 2px #73A1C1;
+}
+.page_1 .onload {
+	text-align: center;
+	margin-top: 40px;
+}
+.page_1 .onload figure,
+.page_1 .onload .onload-link{
+	display: inline-block;
+	vertical-align: top
+}
+.page_1 .onload-link {
+	padding-top: 20px;
+	margin-left: -20px;
+}
+.page_1 .onload-link a {
+	display: block;
+	position: relative;
+	color: #fff;
+	height: 50px;
+	line-height: 50px;
+	width: 180px;
+	background: red;
+	border-radius: 25px;
+	padding-left: 25px;
+	text-align: left;
+	font-size: 18px;
+}
+.page_1 .onload-link a:first-child {
+	background-color: rgba(0,160,225,0.6);
+}
+.page_1 .onload-link a:last-child {
+	margin-top: 20px;
+	background-color: rgba(243,207,10,0.8);
+}
+.page_1 .onload-link a > i {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 50px;
+	line-height: 50px;
+	width: 50px;
+	text-align: center;
+	border-radius: 50%;
+	font-style: normal;
+	font-size: 14px;
+}
+.page_1 .onload-link a:first-child > i {
+	background-color: rgba(0,160,255,1);
+}
+.page_1 .onload-link a:last-child > i {
+	background-color: rgba(243,207,10,1);
+}
+
+/*页面二*/
+.page_2 header {
+	color: #fff;
+	text-align: center;
+}
+.page_2 header > h1 {
+	font-size: 44px;
+	text-shadow: 0 2px 2px #73A1C1;
+}
+.page_2 header > p {
+	font-size: 18px;
+	text-shadow: 0 2px 2px #73A1C1;
+}
+.page_2 .slide .container{
+	width: 550px;
+	position: relative;
+	margin: 0 auto;
+}
+.page_2 .slide img {
+	display: block;
+	position: absolute;
+}
+.page_2 .slide .bg {
+	width: 550px;
+	margin: 80px auto;
+	position: static;
+}
+.page_2 .slide_1 .tanchuang {
+	width: 140px;
+	top: -20px;
+	right: 180px;
+}
+.page_2 .slide_1 .wenzi_1 {
+	width: 200px;
+	top: 160px;
+	left: -32px;
+}
+.page_2 .slide_1 .wenzi_2 {
+	width: 124px;
+	top: 20px;
+	right: 55px;
+}
+.page_2 .slide_1 .wenzi_3 {
+	width: 160px;
+	top: 100px;
+	right: 4px;
+}
+.page_2 .slide_2 .tanchuang {
+	width: 140px;
+	top: -26px;
+	right: 170px;
+}
+.page_2 .slide_2 .wenzi_1 {
+	width: 167px;
+	top: 38px;
+	right: 0;
+}
+.page_2 .slide_3 .wenzi_1 {
+	width: 138px;
+	top: 208px;
+	left: 146px;
+}
+.page_2 .slide_3 .wenzi_2 {
+	width: 172px;
+	top: 106px;
+	right: 45px;
+}
+.page_2 .slide_3 .wenzi_3 {
+	width: 150px;
+	top: 68px;
+	right: 170px;
+}
+.page_2 .slide_3 .wenzi_4 {
+	width: 167px;
+	top: 126px;
+	left: -32px;
+}
