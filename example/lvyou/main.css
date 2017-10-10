@@ -106,15 +106,18 @@
 }
 
 /*页面二*/
-.page_2 header {
+.page_2 header,
+.page_3 header {
 	color: #fff;
 	text-align: center;
 }
-.page_2 header > h1 {
+.page_2 header > h1,
+.page_3 header > h1 {
 	font-size: 44px;
 	text-shadow: 0 2px 2px #73A1C1;
 }
-.page_2 header > p {
+.page_2 header > p, 
+.page_3 header > p{
 	font-size: 18px;
 	text-shadow: 0 2px 2px #73A1C1;
 }
@@ -181,4 +184,21 @@
 	width: 167px;
 	top: 126px;
 	left: -32px;
+}
+
+/*页面三*/
+.page_3 .banner .container {
+	margin: 0 auto;
+}
+.page_3 .banner figure {
+	float: left;
+	width: 100px;
+	height: 350px;
+	overflow: hidden;
+}
+.page_3 .banner img {
+	display: block;
+	width: 350px;
+	height: 350px;
+	max-width: none;
 }
