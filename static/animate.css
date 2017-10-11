@@ -1577,3 +1577,16 @@
 .slideOutUp {
   animation-name: slideOutUp;
 }
+
+.animate-delay-half {
+  animation-delay: .5s;
+}
+.animate-delay-1s {
+  animation-delay: 1s;
+}
+.animate-delay-1s-half {
+  animation-delay: 1.5s;
+}
+.animate-delay-2s {
+  animation-delay: 2s;
+}

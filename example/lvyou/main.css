@@ -106,6 +106,7 @@
 }
 
 /*页面二*/
+
 .page_2 header,
 .page_3 header {
 	color: #fff;
@@ -400,4 +401,17 @@
 	margin-top: 10px;
 	color: #686868;
 	padding-left: 30px;
+}
+
+/*滑动导航*/
+#fp-nav ul li, 
+.fp-slidesNav ul li {
+	border: 10px solid #fff;
+	border-radius: 50%;
+}
+.fp-controlArrow.fp-next {
+	right: 70px;
+}
+.fp-controlArrow.fp-prev {
+	left: 70px;
 }
