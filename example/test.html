@@ -11,11 +11,9 @@
 	</div>
 
 	<script>
-		var p = document.createElement('p');
-		var box = document.getElementById('box');
-		var p1 = document.getElementById('one');
-		p.innerText = '二';
-		box.appendChild(p).parentNode.removeChild(p1);
+		window.ononline = function() {
+			alert('online');
+		}
 	</script>
 </body>
 </html>
